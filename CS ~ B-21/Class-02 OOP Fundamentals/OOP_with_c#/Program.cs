@@ -49,7 +49,8 @@ public class Greeting
 
 public class Program
 {
-    public static void Main(string[] args)
+    // public static void Main(string[] args)
+    public static void Main()
     {
         // Student student1 = new Student();
         // Greeting greeting = new Greeting("Rahim");
