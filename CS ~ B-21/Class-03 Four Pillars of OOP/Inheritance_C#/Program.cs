@@ -14,6 +14,21 @@ public class Person
     }
 }
 
+public class Teacher : Person
+{
+    public string Subject;
+
+    public Teacher(string name, int id, string subject)
+        : base(name, id)
+    {
+        this.Subject = subject;
+    }
+
+    public string GetTitle()
+    {
+        return $"{Name} Sir ({Subject})";
+    }
+}
 
 public class Student : Person
 {
