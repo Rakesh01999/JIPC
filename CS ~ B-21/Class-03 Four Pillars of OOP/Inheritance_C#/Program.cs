@@ -1,16 +1,38 @@
-﻿
+﻿using System;
+
 public class Person
 {
     public string Name;
     public int Id;
+
     public Person(string name, int id)
     {
         this.Name = name;
         this.Id = id;
     }
+
     public void PrintInfo()
     {
-        Console.WriteLine($"Name: {Name}, Id: {Id}");
+        Console.WriteLine($"Name: {Name}, ID: {Id}");
+    }
+}
+
+public class Student : Person
+{
+    public double Marks;
+
+    public Student(string name, int id, double marks)
+        : base(name, id)
+    {
+        this.Marks = marks;
+    }
+
+    public string GetGrade()
+    {
+        if (Marks >= 80) return "A+";
+        else if (Marks >= 60) return "A";
+        else if (Marks >= 40) return "B";
+        else return "F";
     }
 }
 
@@ -30,38 +52,23 @@ public class Teacher : Person
     }
 }
 
-public class Student : Person
+class Program
 {
-    public double Marks;
-    public Student(string name, int id, double marks) : base(name, id)
+    static void Main()
     {
-        this.Marks = marks;
-    }
-    public void ShowAll()
-    {
-        base.PrintInfo();
-        Console.WriteLine($"Marks: {Marks}");
-    }
+        Student rahim = new Student("Rahim", 101, 85);
+        Teacher karim = new Teacher("Karim", 201, "Mathematics");
 
-    public string GetGrade()
-    {
-        if (Marks >= 80) return "A+";
-        else if (Marks >= 60) return "A";
-        else if (Marks >= 40) return "B";
-        else return "F";
-    }
-}
+        // Student — Person-এর সব + নিজের extra
+        rahim.PrintInfo();                    // Person থেকে পাওয়া
+        Console.WriteLine(rahim.Marks);       // Student-এর নিজের
+        Console.WriteLine(rahim.GetGrade());  // Student-এর নিজের
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        Student student1 = new Student("Rahim", 101, 85);
-        // student1.Name = "Rahim";
-        // student1.Id = 101;
-        // student1.Marks = 85;
+        Console.WriteLine("---");
 
-        student1.ShowAll();
-        Console.WriteLine($"Grade: {student1.GetGrade()}");
+        // Teacher — Person-এর সব + নিজের extra
+        karim.PrintInfo();                    // Person থেকে পাওয়া
+        Console.WriteLine(karim.Subject);     // Teacher-এর নিজের
+        Console.WriteLine(karim.GetTitle());  // Teacher-এর নিজের
     }
 }
